@@ -2,7 +2,12 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import * as Styled from "./styles";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import { Alert, View } from "react-native";
+import { Alert } from "react-native";
+import {
+  addNote,
+  deleteNote,
+  editNote,
+} from "../../store/actions/notes/notes-actions";
 
 const EditNoteScreen = () => {
   const [status, setStatus] = useState("createNote");
@@ -33,26 +38,24 @@ const EditNoteScreen = () => {
     }
 
     if (status === "createNote") {
-      dispatch({
-        type: "ADD_NOTE",
-        payload: {
+      dispatch(
+        addNote({
           title,
           body,
-        },
-      });
+        })
+      );
 
       Alert.alert("Anotação criada com sucesso!");
     }
 
     if (status === "editNote") {
-      dispatch({
-        type: "EDIT_NOTE",
-        payload: {
+      dispatch(
+        editNote({
           noteIndex: route.params.noteIndex,
           title,
           body,
-        },
-      });
+        })
+      );
 
       alert("Anotação atualizada com sucesso!");
     }
@@ -76,12 +79,7 @@ const EditNoteScreen = () => {
         {
           text: "Excluir",
           onPress: () => {
-            dispatch({
-              type: "DELETE_NOTE",
-              payload: {
-                noteIndex: route.params.noteIndex,
-              },
-            });
+            dispatch(deleteNote({ noteIndex: route.params.noteIndex }));
 
             Alert.alert("Anotação excluída com sucesso!");
             navigation.goBack();
