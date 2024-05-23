@@ -34,8 +34,6 @@ Esse projeto consiste em uma aplicação de gerenciamento de anotações.
 
 ## 🎨 Layout
 
-> A aplicação tem como base o seguinte layout no [Figma](https://www.figma.com/community/file/1336456468568916765/nlw-expert-orders)
-
 <p align="center">
   <img src=".github/home.jpeg" width=250>
   <img src=".github/note.jpeg" width=250>
